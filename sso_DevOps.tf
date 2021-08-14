@@ -47,28 +47,6 @@ resource "aws_ssoadmin_account_assignment" "Admin_MasterEnv" {
   target_type = "AWS_ACCOUNT"
 }
 
-resource "aws_ssoadmin_account_assignment" "Admin_AuditEnv" {
-  instance_arn       = data.aws_ssoadmin_permission_set.AWSAdministratorAccess.instance_arn
-  permission_set_arn = data.aws_ssoadmin_permission_set.AWSAdministratorAccess.arn
-
-  principal_id   = data.aws_identitystore_group.DevOps.group_id
-  principal_type = "GROUP"
-
-  target_id   = var.company_audit_account_id
-  target_type = "AWS_ACCOUNT"
-}
-
-resource "aws_ssoadmin_account_assignment" "Admin_logarchiveEnv" {
-  instance_arn       = data.aws_ssoadmin_permission_set.AWSAdministratorAccess.instance_arn
-  permission_set_arn = data.aws_ssoadmin_permission_set.AWSAdministratorAccess.arn
-
-  principal_id   = data.aws_identitystore_group.DevOps.group_id
-  principal_type = "GROUP"
-
-  target_id   = var.company_logarchive_account_id
-  target_type = "AWS_ACCOUNT"
-}
-
 resource "aws_ssoadmin_account_assignment" "DevOps_DevEnv" {
   instance_arn       = aws_ssoadmin_permission_set.DevOps_DevEnv.instance_arn
   permission_set_arn = aws_ssoadmin_permission_set.DevOps_DevEnv.arn
@@ -83,28 +61,6 @@ resource "aws_ssoadmin_account_assignment" "DevOps_DevEnv" {
 resource "aws_ssoadmin_account_assignment" "DevOps_ProdEnv" {
   instance_arn       = aws_ssoadmin_permission_set.DevOps_ProdEnv.instance_arn
   permission_set_arn = aws_ssoadmin_permission_set.DevOps_ProdEnv.arn
-
-  principal_id   = data.aws_identitystore_group.DevOps.group_id
-  principal_type = "GROUP"
-
-  target_id   = var.company_production_account_id
-  target_type = "AWS_ACCOUNT"
-}
-
-resource "aws_ssoadmin_account_assignment" "DevOps_Engineer_DevEnv" {
-  instance_arn       = aws_ssoadmin_permission_set.DevOps_DevEnv.instance_arn
-  permission_set_arn = aws_ssoadmin_permission_set.Engineer_DevEnv.arn
-
-  principal_id   = data.aws_identitystore_group.DevOps.group_id
-  principal_type = "GROUP"
-
-  target_id   = var.company_development_account_id
-  target_type = "AWS_ACCOUNT"
-}
-
-resource "aws_ssoadmin_account_assignment" "DevOps_Engineer_ProdEnv" {
-  instance_arn       = aws_ssoadmin_permission_set.DevOps_ProdEnv.instance_arn
-  permission_set_arn = aws_ssoadmin_permission_set.Engineer_ProdEnv.arn
 
   principal_id   = data.aws_identitystore_group.DevOps.group_id
   principal_type = "GROUP"
